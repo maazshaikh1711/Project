@@ -1,0 +1,12 @@
+{
+    "javascript.validate.enable": false,
+    "java.configuration.updateBuildConfiguration": "disabled",
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#0a5e77",
+        "titleBar.activeBackground": "#0a5e77",
+        "titleBar.activeForeground": "#FEF9F2"
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+}
