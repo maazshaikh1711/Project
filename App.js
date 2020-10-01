@@ -18,42 +18,14 @@ import {
 } from 'react-native';
 
 import { Header } from './src/common/Header';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+
+import { HomeScreen } from './src/HomeScreen/HomeScreen';
+import { NotificationScreen } from './src/NotificationScreen/NotificationScreen';
+import { FeedbackScreen } from './src/FeedbackScreen/FeedbackScreen';
+import { AboutScreen } from './src/AboutScreen/AboutScreen';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
-
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>This is Home Screen.</Text>
-    </View>
-  );
-}
-
-function NotificationsScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>This is Notifications Screen.</Text>
-    </View>
-  );
-}
-
-function AboutScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>This is About Screen.</Text>
-    </View>
-  );
-}
-
-function FeedbackScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>This is Feedback Screen.</Text>
-    </View>
-  );
-}
 
 const Drawer = createDrawerNavigator();
 
@@ -65,7 +37,7 @@ const App = () => {
       <NavigationContainer>
         <Drawer.Navigator initialRouteName="Home">
           <Drawer.Screen name="Home" component={HomeScreen} />
-          <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+          <Drawer.Screen name="Notifications" component={NotificationScreen} />
           <Drawer.Screen name="Feedback" component={FeedbackScreen} />
           <Drawer.Screen name="About app" component={AboutScreen} />
         </Drawer.Navigator>
