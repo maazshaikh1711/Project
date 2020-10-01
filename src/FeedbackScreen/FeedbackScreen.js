@@ -12,8 +12,8 @@ export const FeedbackScreen = (navigation) => {
 
     return (
         <>
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start', padding: 15 }}>
-                <Text style={{ fontSize: 30, fontStyle: 'italic', borderBottomWidth: 1 }}>We would like hear your valuable Feedback !</Text>
+            <View style={{ flex: 1, alignItems: 'center', padding: 15 }}>
+                <Text style={{ fontSize: 30, fontStyle: 'italic', borderBottomWidth: 1 }}>Please give your valuable Feedback !</Text>
                 <View style={{ width: '100%', justifyContent: "center", paddingTop: 20 }}>
                     <TextInput
                         mode="outlined"
@@ -36,7 +36,7 @@ export const FeedbackScreen = (navigation) => {
                 </View>
             </View>
 
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start', backgroundColor: "red" }}>
                 <Text style={{ fontSize: 30, fontStyle: 'italic', borderBottomWidth: 1 }}>Rate us now :)</Text>
                 <Image source={require('../assets/stars.png')} ></Image>
             </View>
