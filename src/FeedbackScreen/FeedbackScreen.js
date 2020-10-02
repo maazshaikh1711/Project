@@ -3,6 +3,9 @@ import {
     View,
     Text,
     Image,
+    KeyboardAvoidingView,
+    Keyboard,
+    Alert,
 } from 'react-native';
 
 import { Button, Divider, TextInput } from 'react-native-paper';
@@ -27,7 +30,12 @@ export const FeedbackScreen = (navigation) => {
                         mode="contained"
                         onPress={() => {
                             console.log(text);
-                            setText('')
+                            setText('');
+                            Keyboard.dismiss();
+                            {
+                                text !== "" &&
+                                    Alert.alert("Thank You for your feedback !");
+                            }
                         }
                         }
                     >
@@ -36,11 +44,11 @@ export const FeedbackScreen = (navigation) => {
                 </View>
             </View>
 
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start', backgroundColor: "red" }}>
+
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
                 <Text style={{ fontSize: 30, fontStyle: 'italic', borderBottomWidth: 1 }}>Rate us now :)</Text>
                 <Image source={require('../assets/stars.png')} ></Image>
             </View>
         </>
-
     );
 }
