@@ -8,7 +8,7 @@ import {
 
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
-export const HomeScreen = (navigation) => {
+export const HomeScreen = ({ navigation }) => {
     return (
         <View style={{ flex: 1, alignItems: 'center', alignItems: 'flex-end' }}>
             <MapView style={{ height: '100%', width: '95%' }}
