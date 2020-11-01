@@ -189,8 +189,8 @@ const NotificationScreen = ({ navigation }) => {
             <View style={styles.container}>
                 {/* <StatusBar barStyle="dark-content" /> */}
                 <StatusBar backgroundColor="#5F00E3" barStyle="light-content" />
-                <View style={{ alignItems: 'center' }}>
-                    <Text style={{ fontSize: 30, color: '#5F00E3' }}>Notifications</Text>
+                <View style={{ alignItems: 'center', height: 30 }}>
+                    {/* <Text style={{ fontSize: 30, color: '#5F00E3' }}>Notifications</Text> */}
                 </View>
 
                 {listData.length !== 0
