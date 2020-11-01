@@ -78,7 +78,7 @@ export const HomeScreen = ({ navigation }) => {
     return (
         <>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: "100%", borderWidth: 0.5, borderBottomWidth: 1 }}>
-                <Ionicons name="md-menu" size={icon_size} color="red"
+                <Ionicons name="md-menu" size={icon_size} color="#rgb(98, 20, 220)"
                     onPress={() => navigation.openDrawer()}
                 />
                 {/* <TextInput
@@ -148,12 +148,12 @@ export const HomeScreen = ({ navigation }) => {
                                     return <Marker
                                         key={i}
                                         // pinColor={this.getColor(info)}
-                                        pinColor="#rgb(51, 0, 128)"
+                                        pinColor="red"
                                         coordinate={{
                                             latitude: info.lat,
                                             longitude: info.lng,
                                         }}
-                                        title={String(info.dBm) + info.connectionType}
+                                        title={String(info.dBm) + " dBm, " + info.connectionType}
                                         description={'Your signal quality at this position'}
                                         onPress={e => console.log(e.nativeEvent)}
 
@@ -164,12 +164,12 @@ export const HomeScreen = ({ navigation }) => {
                     }
                     <Marker
 
-                        pinColor="red"
+                        pinColor="#rgb(51, 0, 128)"
                         coordinate={{
                             latitude: myData.lat,
                             longitude: myData.lng,
                         }}
-                        description={String(myData.dBm) + myData.connectionType}
+                        description={String(myData.dBm) + " dBm, " + myData.connectionType}
                         title={'You are here'}
                         onPress={e => console.log(e.nativeEvent)}
 
