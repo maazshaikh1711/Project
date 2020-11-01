@@ -33,10 +33,14 @@ export const Header = ({ navigation }) => {
 
 
         <Appbar.Header>
-            <Ionicons name="md-menu" size={size} color="white"
+            {/* <Ionicons name="md-menu" size={size} color="white"
             // onPress={() => //navigation.openDrawer()}
+            /> */}
+            < Appbar.Content title="MyApp" style={{
+                alignItems: "center",
+                // marginLeft: -size 
+            }}
             />
-            < Appbar.Content title="MyApp" style={{ alignItems: "center", marginLeft: -size }} />
         </Appbar.Header >
 
     );
