@@ -3,13 +3,16 @@ import {
     View,
     Text,
     Button,
-    Dimensions
+    Dimensions,
+    YellowBox
 } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { TextInput } from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-
+import ActionButton from 'react-native-action-button';
+YellowBox.ignoreWarnings(['Animated: `useNativeDriver` was not specified.']);
+// Animated: `useNativeDriver` was not specified. This is a required option and must be explicitly set to `true` or `false`
 const myData = {
     "lat": 19.215,
     "lng": 77.320,
@@ -176,6 +179,29 @@ export const HomeScreen = ({ navigation }) => {
                     />
 
                 </MapView>
+                <ActionButton buttonColor="rgba(231,76,60,1)">
+                    <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
+                        <Ionicons name="md-create" style={{
+                            fontSize: 20,
+                            height: 22,
+                            color: 'white',
+                        }} />
+                    </ActionButton.Item>
+                    <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => console.log("notifications tapped!")}>
+                        <Ionicons name="md-notifications-off" style={{
+                            fontSize: 20,
+                            height: 22,
+                            color: 'white',
+                        }} />
+                    </ActionButton.Item>
+                    <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => console.log("Done tapped!")}>
+                        <Ionicons name="md-done-all" style={{
+                            fontSize: 20,
+                            height: 22,
+                            color: 'white',
+                        }} />
+                    </ActionButton.Item>
+                </ActionButton>
             </View >
         </>
     );
