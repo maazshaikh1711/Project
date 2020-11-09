@@ -24,7 +24,7 @@ const radius = 5;
 const icon_size = 40;
 const { height, width } = Dimensions.get('window');
 
-const data = [
+const towerData = [
     {
         "lat": 19.230,
         "lng": 77.335,
@@ -75,8 +75,115 @@ const data = [
     },
 ];
 
+const hospitalData = [
+    {
+        "lat": 19.240,
+        "lng": 77.335,
+        "dBm": -70,
+        "connectionType": "LTE"
+    },
+    {
+        "lat": 19.205,
+        "lng": 77.332,
+        "dBm": -80,
+        "connectionType": "LTE"
+    },
+    {
+        "lat": 19.233,
+        "lng": 77.310,
+        "dBm": -75,
+        "connectionType": "LTE"
+    },
+    {
+        "lat": 19.222,
+        "lng": 77.340,
+        "dBm": -73,
+        "connectionType": "LTE"
+    },
+    {
+        "lat": 19.211,
+        "lng": 77.320,
+        "dBm": -70,
+        "connectionType": "LTE"
+    },
+    {
+        "lat": 19.227,
+        "lng": 77.310,
+        "dBm": -70,
+        "connectionType": "LTE"
+    },
+    {
+        "lat": 19.212,
+        "lng": 77.305,
+        "dBm": -70,
+        "connectionType": "LTE"
+    },
+    {
+        "lat": 19.208,
+        "lng": 77.309,
+        "dBm": -70,
+        "connectionType": "LTE"
+    },
+];
+
+const atmData = [
+    {
+        "lat": 19.230,
+        "lng": 77.335,
+        "dBm": -70,
+        "connectionType": "LTE"
+    },
+    {
+        "lat": 19.200,
+        "lng": 77.332,
+        "dBm": -80,
+        "connectionType": "LTE"
+    },
+    {
+        "lat": 19.231,
+        "lng": 77.310,
+        "dBm": -75,
+        "connectionType": "LTE"
+    },
+    {
+        "lat": 19.226,
+        "lng": 77.340,
+        "dBm": -73,
+        "connectionType": "LTE"
+    },
+    {
+        "lat": 19.215,
+        "lng": 77.320,
+        "dBm": -70,
+        "connectionType": "LTE"
+    },
+    {
+        "lat": 19.220,
+        "lng": 77.310,
+        "dBm": -70,
+        "connectionType": "LTE"
+    },
+    {
+        "lat": 19.210,
+        "lng": 77.305,
+        "dBm": -70,
+        "connectionType": "LTE"
+    },
+    {
+        "lat": 19.205,
+        "lng": 77.309,
+        "dBm": -70,
+        "connectionType": "LTE"
+    },
+];
+
+pinName = towerData;
+
 export const HomeScreen = ({ navigation }) => {
     let i = 0;
+
+    // const [pinName, setPinName] = React.useState(towerData);
+    const [pinColors, setPinColor] = React.useState('red');
 
     return (
         <>
@@ -141,7 +248,7 @@ export const HomeScreen = ({ navigation }) => {
 
 
                     {
-                        data.map((info) => {
+                        pinName.map((info) => {
 
                             if (info.lat !== myData.lat && info.lng !== myData.lng) {
 
@@ -151,7 +258,7 @@ export const HomeScreen = ({ navigation }) => {
                                     return <Marker
                                         key={i}
                                         // pinColor={this.getColor(info)}
-                                        pinColor="red"
+                                        pinColor={pinColors}
                                         coordinate={{
                                             latitude: info.lat,
                                             longitude: info.lng,
@@ -179,30 +286,53 @@ export const HomeScreen = ({ navigation }) => {
                     />
 
                 </MapView>
-                <ActionButton buttonColor="rgba(231,76,60,1)">
-                    <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
-                        <Ionicons name="md-create" style={{
+                <ActionButton buttonColor="#b659b6">
+                    <ActionButton.Item buttonColor='#3498db' title="ATM" onPress={() => {
+                        // setPinName(atmData);
+                        setPinColor('#3498db');
+                        pinName = atmData;
+                    }}
+                    >
+                        <Ionicons name="card" style={{
                             fontSize: 20,
                             height: 22,
                             color: 'white',
-                        }} />
+                        }}
+                        />
                     </ActionButton.Item>
-                    <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => console.log("notifications tapped!")}>
-                        <Ionicons name="md-notifications-off" style={{
+                    <ActionButton.Item buttonColor='#1abc9c' title="Hospital" onPress={() => {
+                        // setPinName(hospitalData);
+                        setPinColor('#1abc9c');
+                        pinName = hospitalData;
+                    }}
+                    >
+                        <Ionicons name="medkit" style={{
                             fontSize: 20,
                             height: 22,
                             color: 'white',
-                        }} />
+                        }}
+                        />
                     </ActionButton.Item>
-                    <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => console.log("Done tapped!")}>
-                        <Ionicons name="md-done-all" style={{
+                    <ActionButton.Item buttonColor='red' title="Mobile Towers" onPress={() => {
+                        // setPinName(towerData);
+                        setPinColor('red');
+                        pinName = towerData
+                    }}
+                    >
+                        <Ionicons name="cellular" style={{
                             fontSize: 20,
                             height: 22,
                             color: 'white',
-                        }} />
+                        }}
+                        />
                     </ActionButton.Item>
-                </ActionButton>
+                </ActionButton >
             </View >
         </>
     );
 }
+// Mapping of Telecom infrastructure in GIS application.
+// At present GIS based DBT mobile app has feature to search ATM, Bank Branches, Bank Mitras and places. 
+// If this DBT app include the details of Telecom Infrastructure (Mobile Towers Wi-Fi Hotspots/APs, Telephone exchanges etc.) 
+// then it would be more useful for Public Government authorities 
+// can also use this information to facilitate Eservices and to provide coverage in Telecom uncovered areas.
