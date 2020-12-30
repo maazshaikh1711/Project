@@ -11,8 +11,11 @@ import { TextInput } from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import ActionButton from 'react-native-action-button';
+import PushNotification from 'react-native-push-notification';
 YellowBox.ignoreWarnings(['Animated: `useNativeDriver` was not specified.']);
+YellowBox.ignoreWarnings(['componentWillReceiveProps has been renamed, and is']);
 // Animated: `useNativeDriver` was not specified. This is a required option and must be explicitly set to `true` or `false`
+
 const myData = {
     "lat": 19.215,
     "lng": 77.320,
@@ -79,101 +82,117 @@ const hospitalData = [
     {
         "lat": 19.240,
         "lng": 77.335,
-        "dBm": -70,
-        "connectionType": "LTE"
+        "host": "Global",
+        "contact": 1234567891,
+        "open": "1000",
+        "close": "2100"
     },
     {
         "lat": 19.205,
         "lng": 77.332,
-        "dBm": -80,
-        "connectionType": "LTE"
+        "host": "Lotus",
+        "contact": 1234567891,
+        "open": "1000",
+        "close": "2100"
     },
     {
         "lat": 19.233,
         "lng": 77.310,
-        "dBm": -75,
-        "connectionType": "LTE"
+        "host": "Gilda",
+        "contact": 1234567891,
+        "open": "1100",
+        "close": "2000"
     },
     {
         "lat": 19.222,
         "lng": 77.340,
-        "dBm": -73,
-        "connectionType": "LTE"
+        "host": "Bhandari",
+        "contact": 1234567891,
+        "open": "0900",
+        "close": "2200"
     },
     {
         "lat": 19.211,
         "lng": 77.320,
-        "dBm": -70,
-        "connectionType": "LTE"
+        "host": "Horizon",
+        "contact": 1234567891,
+        "open": "1000",
+        "close": "2100"
     },
     {
         "lat": 19.227,
         "lng": 77.310,
-        "dBm": -70,
-        "connectionType": "LTE"
+        "host": "Life Care",
+        "contact": 1234567891,
+        "open": "1100",
+        "close": "2230"
     },
     {
         "lat": 19.212,
         "lng": 77.305,
-        "dBm": -70,
-        "connectionType": "LTE"
+        "host": "Ashwini",
+        "contact": 1234567891,
+        "open": "1100",
+        "close": "2000"
     },
     {
         "lat": 19.208,
         "lng": 77.309,
-        "dBm": -70,
-        "connectionType": "LTE"
+        "host": "Continental",
+        "contact": 1234567891,
+        "open": "1000",
+        "close": "2000"
     },
 ];
 
-const atmData = [
+const wifiData = [
     {
         "lat": 19.230,
         "lng": 77.335,
-        "dBm": -70,
-        "connectionType": "LTE"
+        "nsp": "Airtel",
+        "ncu": 3
     },
     {
         "lat": 19.200,
         "lng": 77.332,
-        "dBm": -80,
-        "connectionType": "LTE"
+        "nsp": "Airtel",
+        "ncu": 3
     },
     {
         "lat": 19.231,
         "lng": 77.310,
-        "dBm": -75,
-        "connectionType": "LTE"
+        "nsp": "Airtel",
+        "ncu": 3
     },
     {
         "lat": 19.226,
         "lng": 77.340,
-        "dBm": -73,
-        "connectionType": "LTE"
+        "nsp": "Airtel",
+        "ncu": 3
     },
     {
         "lat": 19.215,
         "lng": 77.320,
-        "dBm": -70,
-        "connectionType": "LTE"
+        "nsp": "Airtel",
+        "ncu": 3
     },
     {
         "lat": 19.220,
         "lng": 77.310,
-        "dBm": -70,
-        "connectionType": "LTE"
+        "nsp": "Airtel",
+        "ncu": 3
     },
     {
         "lat": 19.210,
         "lng": 77.305,
-        "dBm": -70,
-        "connectionType": "LTE"
+        "nsp": "Airtel",
+        "ncu": 3
     },
     {
         "lat": 19.205,
         "lng": 77.309,
-        "dBm": -70,
-        "connectionType": "LTE"
+        "nsp": "Airtel",
+        "ncu": 3
     },
 ];
 
@@ -183,7 +202,8 @@ export const HomeScreen = ({ navigation }) => {
     let i = 0;
 
     // const [pinName, setPinName] = React.useState(towerData);
-    const [pinColors, setPinColor] = React.useState('red');
+    const [pinColors, setPinColor] = React.useState('#3498db');
+
 
     return (
         <>
@@ -225,7 +245,7 @@ export const HomeScreen = ({ navigation }) => {
                         },
                     }}
                     query={{
-                        key: 'AIzaSyAv4zcxIBCH6EBNJc6e57yVYiZ5I6UiVRQ',
+                        key: 'AIzaSyBS4v8qJyqHYfMCXd4fWJgRJvfQxaE9Y1M',
                         language: 'en',
                         types: 'establishment',
                     }}
@@ -233,6 +253,7 @@ export const HomeScreen = ({ navigation }) => {
 
 
             </View>
+
             <View style={{ flex: 9, alignItems: 'center' }}>
                 <MapView style={{ height: '100%', width: width }}
 
@@ -287,10 +308,24 @@ export const HomeScreen = ({ navigation }) => {
 
                 </MapView>
                 <ActionButton buttonColor="#b659b6">
-                    <ActionButton.Item buttonColor='#3498db' title="ATM" onPress={() => {
-                        // setPinName(atmData);
+                    <ActionButton.Item buttonColor='blue' title="Help" onPress={() => {
+                        PushNotification.localNotification({
+                            id: 0,
+                            message: 'We have detected low network in your phone',
+                            soundName: 'siren.mp3',
+                        });
+                    }}>
+                        <Ionicons name="alert" style={{
+                            fontSize: 20,
+                            height: 22,
+                            color: 'white',
+                        }}
+                        />
+                    </ActionButton.Item>
+                    <ActionButton.Item buttonColor='#3498db' title="WiFi" onPress={() => {
+                        // setPinName(wifiData);
                         setPinColor('#3498db');
-                        pinName = atmData;
+                        pinName = wifiData;
                     }}
                     >
                         <Ionicons name="card" style={{
@@ -326,6 +361,8 @@ export const HomeScreen = ({ navigation }) => {
                         }}
                         />
                     </ActionButton.Item>
+
+
                 </ActionButton >
             </View >
         </>
