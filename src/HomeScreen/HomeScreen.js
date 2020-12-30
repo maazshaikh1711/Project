@@ -29,170 +29,194 @@ const { height, width } = Dimensions.get('window');
 
 const towerData = [
     {
+        "pin": "towerData",
         "lat": 19.230,
         "lng": 77.335,
-        "dBm": -70,
-        "connectionType": "LTE"
+        "dBm": -60,
+        "connectionType": "GSM"
     },
     {
+        "pin": "towerData",
         "lat": 19.200,
         "lng": 77.332,
         "dBm": -80,
         "connectionType": "LTE"
     },
     {
+        "pin": "towerData",
         "lat": 19.231,
         "lng": 77.310,
         "dBm": -75,
         "connectionType": "LTE"
     },
     {
+        "pin": "towerData",
         "lat": 19.226,
         "lng": 77.340,
         "dBm": -73,
-        "connectionType": "LTE"
+        "connectionType": "GSM"
     },
     {
+        "pin": "towerData",
         "lat": 19.215,
         "lng": 77.320,
         "dBm": -70,
         "connectionType": "LTE"
     },
     {
+        "pin": "towerData",
         "lat": 19.220,
         "lng": 77.310,
-        "dBm": -70,
-        "connectionType": "LTE"
+        "dBm": -77,
+        "connectionType": "GSM"
     },
     {
+        "pin": "towerData",
         "lat": 19.210,
         "lng": 77.305,
-        "dBm": -70,
+        "dBm": -100,
         "connectionType": "LTE"
     },
     {
+        "pin": "towerData",
         "lat": 19.205,
         "lng": 77.309,
-        "dBm": -70,
-        "connectionType": "LTE"
+        "dBm": -80,
+        "connectionType": "GSM"
     },
 ];
 
 const hospitalData = [
     {
+        "pin": "hospitalData",
         "lat": 19.240,
         "lng": 77.335,
-        "host": "Global",
+        "host": "Global Hospital",
         "contact": 1234567891,
-        "open": "1000",
-        "close": "2100"
+        "open": "10:00",
+        "close": "21:00"
     },
     {
+        "pin": "hospitalData",
         "lat": 19.205,
         "lng": 77.332,
-        "host": "Lotus",
+        "host": "Lotus Hospital",
         "contact": 1234567891,
-        "open": "1000",
-        "close": "2100"
+        "open": "10:00",
+        "close": "21:00"
     },
     {
+        "pin": "hospitalData",
         "lat": 19.233,
         "lng": 77.310,
-        "host": "Gilda",
+        "host": "Gilda Hospital",
         "contact": 1234567891,
-        "open": "1100",
-        "close": "2000"
+        "open": "11:00",
+        "close": "20:00"
     },
     {
+        "pin": "hospitalData",
         "lat": 19.222,
         "lng": 77.340,
-        "host": "Bhandari",
+        "host": "Bhandari Hospital",
         "contact": 1234567891,
-        "open": "0900",
-        "close": "2200"
+        "open": "09:00",
+        "close": "22:00"
     },
     {
+        "pin": "hospitalData",
         "lat": 19.211,
         "lng": 77.320,
-        "host": "Horizon",
+        "host": "Horizon Hospital",
         "contact": 1234567891,
-        "open": "1000",
-        "close": "2100"
+        "open": "10:00",
+        "close": "21:00"
     },
     {
+        "pin": "hospitalData",
         "lat": 19.227,
         "lng": 77.310,
-        "host": "Life Care",
+        "host": "Life Care Hospital",
         "contact": 1234567891,
-        "open": "1100",
-        "close": "2230"
+        "open": "11:00",
+        "close": "22:30"
     },
     {
+        "pin": "hospitalData",
         "lat": 19.212,
         "lng": 77.305,
-        "host": "Ashwini",
+        "host": "Ashwini Hospital",
         "contact": 1234567891,
-        "open": "1100",
-        "close": "2000"
+        "open": "11:00",
+        "close": "20:00"
     },
     {
+        "pin": "hospitalData",
         "lat": 19.208,
         "lng": 77.309,
-        "host": "Continental",
+        "host": "Continental Hospital",
         "contact": 1234567891,
-        "open": "1000",
-        "close": "2000"
+        "open": "10:00",
+        "close": "20:00"
     },
 ];
 
 const wifiData = [
     {
-        "lat": 19.230,
-        "lng": 77.335,
-        "nsp": "Airtel",
-        "ncu": 3
+        "pin": "wifiData",
+        "lat": 19.250,
+        "lng": 77.375,
+        "nsp": "Jio",
+        "ncu": 6
     },
     {
-        "lat": 19.200,
-        "lng": 77.332,
+        "pin": "wifiData",
+        "lat": 19.220,
+        "lng": 77.342,
         "nsp": "Airtel",
-        "ncu": 3
+        "ncu": 1
     },
     {
-        "lat": 19.231,
-        "lng": 77.310,
-        "nsp": "Airtel",
-        "ncu": 3
-    },
-    {
-        "lat": 19.226,
-        "lng": 77.340,
-        "nsp": "Airtel",
-        "ncu": 3
-    },
-    {
-        "lat": 19.215,
+        "pin": "wifiData",
+        "lat": 19.271,
         "lng": 77.320,
         "nsp": "Airtel",
+        "ncu": 4
+    },
+    {
+        "pin": "wifiData",
+        "lat": 19.216,
+        "lng": 77.330,
+        "nsp": "BSNL",
         "ncu": 3
     },
     {
-        "lat": 19.220,
-        "lng": 77.310,
+        "pin": "wifiData",
+        "lat": 19.225,
+        "lng": 77.340,
+        "nsp": "Airtel",
+        "ncu": 4
+    },
+    {
+        "pin": "wifiData",
+        "lat": 19.230,
+        "lng": 77.330,
         "nsp": "Airtel",
         "ncu": 3
     },
     {
-        "lat": 19.210,
-        "lng": 77.305,
-        "nsp": "Airtel",
-        "ncu": 3
+        "pin": "wifiData",
+        "lat": 19.240,
+        "lng": 77.325,
+        "nsp": "Vi",
+        "ncu": 2
     },
     {
-        "lat": 19.205,
-        "lng": 77.309,
-        "nsp": "Airtel",
-        "ncu": 3
+        "pin": "wifiData",
+        "lat": 19.215,
+        "lng": 77.319,
+        "nsp": "Jio",
+        "ncu": 5
     },
 ];
 
@@ -200,10 +224,14 @@ pinName = towerData;
 
 export const HomeScreen = ({ navigation }) => {
     let i = 0;
+    let title = ""
+    let description = ""
+
 
     // const [pinName, setPinName] = React.useState(towerData);
     const [pinColors, setPinColor] = React.useState('#3498db');
-
+    //const [title, setTitle] = React.useState("");
+    //const [description, setDescription] = React.useState("");
 
     return (
         <>
@@ -269,30 +297,43 @@ export const HomeScreen = ({ navigation }) => {
 
 
                     {
+
                         pinName.map((info) => {
 
-                            if (info.lat !== myData.lat && info.lng !== myData.lng) {
+                            if (info.pin === "towerData") {
+                                title = String(info.dBm) + " dBm, " + info.connectionType
+                                description = ""
+                            }
+                            else if (info.pin === "hospitalData") {
+                                title = info.host
+                                description = "Open: " + info.open + ", Close: " + info.close
+                            }
+                            else {
+                                title = "Network Service Provider: " + info.nsp
+                                description = "Connected users: " + info.ncu
+                            }
 
-                                if (((info.lat >= myData.lat - radius) && (info.lat <= myData.lat + radius)) &&
-                                    ((info.lng >= myData.lng - radius) && (info.lng <= myData.lng + radius))) {
-                                    i = i + 1;
-                                    return <Marker
-                                        key={i}
-                                        // pinColor={this.getColor(info)}
-                                        pinColor={pinColors}
-                                        coordinate={{
-                                            latitude: info.lat,
-                                            longitude: info.lng,
-                                        }}
-                                        title={String(info.dBm) + " dBm, " + info.connectionType}
-                                        description={'Your signal quality at this position'}
-                                        onPress={e => console.log(e.nativeEvent)}
+                            if ((info.lat >= myData.lat - radius) && (info.lat <= myData.lat + radius) &&
+                                (info.lng >= myData.lng - radius) && (info.lng <= myData.lng + radius)) {
+                                i = i + 1;
 
-                                    />;
-                                }
+                                return <Marker
+                                    key={i}
+                                    // pinColor={this.getColor(info)}
+                                    pinColor={pinColors}
+                                    coordinate={{
+                                        latitude: info.lat,
+                                        longitude: info.lng,
+                                    }}
+                                    title={title}
+                                    description={description}
+                                    onPress={e => console.log(e.nativeEvent)}
+
+                                />;
                             }
                         })
                     }
+
                     <Marker
 
                         pinColor="#rgb(51, 0, 128)"
@@ -307,7 +348,9 @@ export const HomeScreen = ({ navigation }) => {
                     />
 
                 </MapView>
-                <ActionButton buttonColor="#b659b6">
+
+                <ActionButton buttonColor="#b659b6" position="left">
+                    {/*
                     <ActionButton.Item buttonColor='blue' title="Help" onPress={() => {
                         PushNotification.localNotification({
                             id: 0,
@@ -322,6 +365,7 @@ export const HomeScreen = ({ navigation }) => {
                         }}
                         />
                     </ActionButton.Item>
+                    */}
                     <ActionButton.Item buttonColor='#3498db' title="WiFi" onPress={() => {
                         // setPinName(wifiData);
                         setPinColor('#3498db');
