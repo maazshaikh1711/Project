@@ -70,7 +70,7 @@ export const FeedbackScreen = ({ navigation }) => {
                         style={{ alignSelf: 'center', paddingTop: 20 }}
                     />
                     <View style={{ paddingTop: 30 }}>
-                        <Button mode="contained" onPress={() => { setmyrating(2.5); Alert.alert("Thank You for Rating us !"); }}>Submit</Button>
+                        <Button mode="contained" onPress={() => { Alert.alert(`Thank You for Rating us !`); setmyrating(2.5); }}>Submit</Button>
                         {/* <Image source={require('../assets/stars.png')} ></Image> */}
                     </View>
                 </View>
