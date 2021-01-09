@@ -21,23 +21,23 @@ const NotificationScreen = ({ navigation }) => {
     const [listData, setListData] = useState([
         {
             key: `4`,
-            title: 'Your pizza order placed successfully',
-            details: 'Your pizza order to snack corner has been accepted and being processed.'
+            title: 'Low signal detected',
+            details: 'Low signal was detected for 1 hour at 5:00 pm.'
         },
         {
             key: `3`,
-            title: 'Your bengali thali order has been delivered',
-            details: 'Your bengali thali has been delivered by Delicious Bong Recipe.'
+            title: 'New Wi-Fi detected',
+            details: 'New Wi-Fi was detected near you at 3:00 pm.'
         },
         {
             key: `2`,
-            title: 'Out for delivery',
-            details: 'Bengali thali will reach to you within 30 minutes.'
+            title: 'Low signal detected',
+            details: 'Low signal was detected for 1 hour at 2:00 pm.'
         },
         {
             key: `1`,
-            title: 'Your bengali thali order placed successfully',
-            details: 'Your bengali thali order to Delicious Bong Recipe has been accepted and being processed.'
+            title: 'New Mobile Tower Detected',
+            details: 'New Mobile Tower detected near you.'
         },
     ]);
 
