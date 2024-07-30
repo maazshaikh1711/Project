@@ -18,7 +18,11 @@ import folium.plugins as plugins
 from folium.plugins import  MarkerCluster
 from streamlit_folium import folium_static
 import sqlite3
+import os
 
+#IMP_NOTE:
+#Please modify this accordingly before running (DEPLOYMENT OR DEVELOPMENT)
+environment = "DEVELOPMENT"
 
 conn=sqlite3.connect('data.db')
 c=conn.cursor()
@@ -64,16 +68,17 @@ def login_tab():
                     #st.write(i)
                     #st.write(type(i))
                    
-                st.success("Logged in as {}".format(username1))
+                st.success(f"Logged in as {username1}")
 
                 emp_arr=['']
-                infra_arr=['Wifi','Hospital','Towers']
+                infra_arr=['Hospital','Towers', 'Wifi']
                 infra_list=np.append(emp_arr,infra_arr)
                 
-                infra_selected = st.selectbox('Select one Telecom Infrastructure:',infra_list, format_func=lambda u: 'Select one Telecom Infrastructure' if u == '' else u,key="Infra list")
+                infra_selected = st.selectbox('Select one option:',infra_list, format_func=lambda u: 'Select one option' if u == '' else u,key="Infra list")
                 
                 if infra_selected:
-                    st.success("You selected a Telecom Infrastructure")
+                    st.success(f"You selected {infra_selected}")
+
                     
                     if infra_selected=='Wifi':
                         df1=pd.read_csv("https://raw.githubusercontent.com/Rohan-Rokade/Mapping-_Telecom-/main/wifi_gen.csv")
@@ -170,7 +175,12 @@ def login_tab():
                         
                         
                     elif infra_selected=='Hospital':
+                        
+                        ##################  1st section
+
+                        st.subheader("ALL HOSPITALS")
                         df1=pd.read_csv("https://raw.githubusercontent.com/Rohan-Rokade/Mapping-_Telecom-/main/hos_gen.csv")
+                        df1['contact']=df1['contact'].astype(str)
                         st.table(df1)
                         
                         m99= folium.Map(location=[np.average(df1['lat']),np.average(df1['lon'])], tiles='cartodbpositron', zoom_start=4)
@@ -179,7 +189,6 @@ def login_tab():
                         
                         for i in range(0,len(df1)):
                             
-                        
                                     def fancy_html(row):
                                                     i = row
                                                     mi="MetaData Information"
@@ -200,26 +209,24 @@ def login_tab():
                                                 
                                                 </head>
                                                 
-                                                <table style="height: 126px; width: 300px;">
+                                                <table style="height: 126px; width: 300px; margin-bottom: 20px;">
                                                 <tbody>
-                                                <tr>
-                                                <td style="background-color: """+ left_col_colour +""";"><span style="color: #ffffff;"> Hospital Name</span></td>
-                                                <td style="width: 100px;background-color: """+ right_col_colour +""";">{}</td>""".format(hostname) + """
-                                                </tr>
-                                                <tr>
-                                                <td style="background-color: """+ left_col_colour +""";"><span style="color: #ffffff;">Contact Number</span></td>
-                                                <td style="width: 100px;background-color: """+ right_col_colour +""";">{}</td>""".format(contact_number) + """
-                                                </tr>
-                                                <tr>
-                                                <td style="background-color: """+ left_col_colour +""";"><span style="color: #ffffff;">Opening Time</span></td>
-                                                <td style="width: 100px;background-color: """+ right_col_colour +""";">{}</td>""".format(opening) + """
-                                                </tr>
-                                                <tr>
-                                                <td style="background-color: """+ left_col_colour +""";"><span style="color: #ffffff;">Closing Time</span></td>
-                                                <td style="width: 100px;background-color: """+ right_col_colour +""";">{}</td>""".format(closing) + """
-                                                </tr>
-                                                
-                                                
+                                                    <tr>
+                                                    <td style="background-color: """+ left_col_colour +""";"><span style="color: #ffffff;"> Hospital Name</span></td>
+                                                    <td style="width: 100px;background-color: """+ right_col_colour +""";">{}</td>""".format(hostname) + """
+                                                    </tr>
+                                                    <tr>
+                                                    <td style="background-color: """+ left_col_colour +""";"><span style="color: #ffffff;">Contact Number</span></td>
+                                                    <td style="width: 100px;background-color: """+ right_col_colour +""";">{}</td>""".format(contact_number) + """
+                                                    </tr>
+                                                    <tr>
+                                                    <td style="background-color: """+ left_col_colour +""";"><span style="color: #ffffff;">Opening Time</span></td>
+                                                    <td style="width: 100px;background-color: """+ right_col_colour +""";">{}</td>""".format(opening) + """
+                                                    </tr>
+                                                    <tr>
+                                                    <td style="background-color: """+ left_col_colour +""";"><span style="color: #ffffff;">Closing Time</span></td>
+                                                    <td style="width: 100px;background-color: """+ right_col_colour +""";">{}</td>""".format(closing) + """
+                                                    </tr>
                                                 
                                                 </tbody>
                                                 </table>
@@ -235,32 +242,16 @@ def login_tab():
                                     mc.add_child(Marker(location=[df1['lat'].iloc[i],df1['lon'].iloc[i]],popup=popup,icon=folium.Icon(icon='info-sign'))).add_to(m99)
                         m99.add_child(mc)
                         folium_static(m99)
+
+
+                        ##################  2nd section
                         
-                        #time fix 
-                        hr_input=st.slider('Slide Hours', min_value=0, max_value=24)
-                        df1['op_hr']=df1['open'].str[:2]
-                        df1['op_hr']=df1['op_hr'].astype(int)
-                      
-                     
-                        data8=df1[(df1.op_hr==hr_input)]
-                        st.write(data8)
+                        st.markdown("<br>" * 5, unsafe_allow_html=True)  # Adds vertical space
+                        st.subheader("SEARCH BY NAME")
+                        pt_input=st.text_input("Enter the name or substring of Hospital name you want to find","")
                         
-                        m96= folium.Map(location=[np.average(df1['lat']),np.average(df1['lon'])], tiles='cartodbpositron', zoom_start=4)
-                        mc = MarkerCluster()
-                        for idx, row in data8.iterrows():
-                             mc.add_child(Marker(location=[row['lat'], row['lon']],
-                        popup=("Hospital Name: {xyz1}<br>""Opening time of Hospital: {open1}<br>" "Closing time of Hospital: {close1}<br>" "Contact Number :{contact1}<br>")
-                        .format(xyz1=row.host,open1=row.open,close1=row.closed,contact1=row.contact)
-                                ,icon=folium.Icon(icon='info-sign')
-                                ))
-                        m96.add_child(mc) 
-                        folium_static(m96)
-                        
-                        pt_input=st.text_input("Enter the name or substring of Hospital name you want to find","enter here")
-                        
-                        
-                        if(pt_input!= "enter here"):
-                            data9=df1[df1.host.str.contains(pt_input)]
+                        if(pt_input!= ""):
+                            data9=df1[df1.host.str.contains(pt_input.lower(), case=False, na=False)]
                             st.write(data9)
                             
                             
@@ -273,17 +264,63 @@ def login_tab():
                                     ))
                             m95.add_child(mc) 
                             folium_static(m95)
-                            
+
+
+                        ##################  3rd section
+
+                        st.markdown("<br>" * 5, unsafe_allow_html=True)  # Adds vertical space
+                        st.subheader("CHECK OPEN HOSPITALS")
+
+                        #time fix 
+                        hr_input=st.slider('Slide Hours', min_value=0, max_value=24)
                         
+                        df1['op_hr']=df1['open'].str[:2]
+                        df1['op_hr']=df1['op_hr'].astype(int)
+
+                        df1['cl_hr']=df1['closed'].str[:2]
+                        df1['cl_hr']=df1['cl_hr'].astype(int)
+
+                        # Convert input to integer
+                        hr_input = int(hr_input)
+
+                        # Filter DataFrame based on input hour
+                        filtered_df = df1[(df1['op_hr'] <= hr_input) & (df1['cl_hr'] >= hr_input)]
+
+                        # Display filtered DataFrame
+                        st.write(filtered_df[['lat', 'lon', 'host', 'open', 'closed', 'contact']])
+
+                        # data8=df1[(df1.op_hr==hr_input)]
+                        # st.write(data8)
                         
-                        
+                        m96= folium.Map(location=[np.average(df1['lat']),np.average(df1['lon'])], tiles='cartodbpositron', zoom_start=4)
+                        mc = MarkerCluster()
+                        for idx, row in filtered_df.iterrows():
+                             mc.add_child(Marker(location=[row['lat'], row['lon']],
+                        popup=("Hospital Name: {xyz1}<br>""Opening time of Hospital: {open1}<br>" "Closing time of Hospital: {close1}<br>" "Contact Number :{contact1}<br>")
+                        .format(xyz1=row.host,open1=row.open,close1=row.closed,contact1=row.contact)
+                                ,icon=folium.Icon(icon='info-sign')
+                                ))
+                        m96.add_child(mc) 
+                        folium_static(m96)
+                                                
                        
                         
                     elif  infra_selected=='Towers':
-                        DATABASE = "mongodb+srv://amaan:PwxIIvIMb2tTow3z@cluster0-myavd.mongodb.net/natours?retryWrites=true&w=majority"
-                        @st.cache
+                        
+                        def get_mongo_uri():
+                            # Check if running in Streamlit Cloud environment
+                            if environment=="DEPLOYMENT":
+                                return st.secrets["MONGO_URI"]
+                            elif environment=="DEVELOPMENT":
+                                # Fallback to environment variable for local development
+                                return os.getenv("MONGO_URI")
+
+                        # Get the MongoDB URI
+                        mongo_uri = get_mongo_uri()
+                        
+                        @st.cache_resource
                         def load_data():
-                                client = pymongo.MongoClient(DATABASE)
+                                client = pymongo.MongoClient(mongo_uri)
                         
                                 db = client["natours"]
                                 towers= db["towers"].find().limit(500)
